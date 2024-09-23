@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventory App</title>
+  </head>
+  <body>
+    <h1>Add new trainer:</h1>
+    <form action="/trainers/new" method="post">
+      <label for="name">Trainer name:</label>
+      <input name="name" id="name" type="text" />
+      <label for="game">Trainer game:</label>
+      <input type="text" name="game" id="game" />
+      <button type="submit">Add trainer</button>
+    </form>
+    <a href="/trainers">Back to previous page</a>
+  </body>
+</html>

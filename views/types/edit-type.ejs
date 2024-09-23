@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventory App</title>
+  </head>
+  <body>
+    <h1>Edit type:</h1>
+    <form action="/types/edit/<%= type.id %>" method="post">
+      <label for="type">Type name:</label>
+      <input name="type" id="type" type="text" value="<%= type.type %>" />
+      <button type="submit">Save changes</button>
+    </form>
+    <a href="/types">Back to previous page</a>
+  </body>
+</html>

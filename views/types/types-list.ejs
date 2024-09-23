@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventory App</title>
+  </head>
+  <body>
+    <h1>Types data:</h1>
+    <ul>
+      <% types.forEach((row) => { %>
+      <li>
+        <% for (let key in row) { %>
+        <div><%= key%>: <%= row[key] %></div>
+        <% } %>
+
+        <a href="/types/edit/<%= row.id %>"> Edit</a>
+
+        <form action="/types/delete/<%= row.id %>" method="post">
+          <button
+            type="submit"
+            onclick="return confirm('Are you sure you want to delete this type ?')"
+          >
+            Delete
+          </button>
+        </form>
+      </li>
+      <% }); %>
+    </ul>
+    <a href="/types/new">Add new type</a>
+    <a href="/">Back to main page</a>
+  </body>
+</html>
