@@ -14,7 +14,12 @@ async function getTrainersData() {
 }
 
 async function getPokemonsData() {
-  const { rows } = await pool.query(`SELECT * FROM pokemons ORDER BY id`);
+  const { rows } = await pool.query(`
+    SELECT pokemons.id, pokemons.name, trainers.name AS trainer, types.type 
+    FROM pokemons 
+    LEFT JOIN trainers ON pokemons.trainer_id = trainers.id
+    LEFT JOIN types ON pokemons.type_id = types.id
+    ORDER BY pokemons.id`);
   return rows;
 }
 
@@ -37,10 +42,10 @@ async function addType(type) {
     ;`);
 }
 
-async function addPokemon(name) {
-  await pool.query(`INSERT INTO pokemons (name)
+async function addPokemon(name, type_id, trainer_id) {
+  await pool.query(`INSERT INTO pokemons (name, type_id, trainer_id)
     VALUES
-    ('${name}')
+    ('${name}', '${type_id}', '${trainer_id}')
     ;`);
 }
 

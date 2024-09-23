@@ -2,15 +2,21 @@ const db = require("../db/queries");
 
 const displayPokemonsData = async (req, res) => {
   const pokemons = await db.getPokemonsData();
+  console.log(pokemons);
   res.render("./pokemons/pokemons-list", { pokemons: pokemons });
 };
 
-const newPokemonGet = (req, res) => {
-  res.render("./pokemons/new-pokemon");
+const newPokemonGet = async (req, res) => {
+  const types = await db.getTypesData();
+  const trainers = await db.getTrainersData();
+  res.render("./pokemons/new-pokemon", {
+    types: types,
+    trainers: trainers,
+  });
 };
 
 const newPokemonPost = async (req, res) => {
-  await db.addPokemon(req.body.name);
+  await db.addPokemon(req.body.name, req.body.type_id, req.body.trainer_id);
   res.redirect("/pokemons");
 };
 
@@ -20,8 +26,14 @@ const deletePokemonPost = async (req, res) => {
 };
 
 const editPokemonGet = async (req, res) => {
+  const types = await db.getTypesData();
+  const trainers = await db.getTrainersData();
   const pokemonData = await db.getPokemonById(req.params.id);
-  res.render("./pokemons/edit-pokemon", { pokemon: pokemonData[0] });
+  res.render("./pokemons/edit-pokemon", {
+    pokemon: pokemonData[0],
+    types: types,
+    trainers: trainers,
+  });
 };
 
 const editPokemonPost = async (req, res) => {

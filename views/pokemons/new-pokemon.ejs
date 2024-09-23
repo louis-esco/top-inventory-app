@@ -10,6 +10,18 @@
     <form action="/pokemons/new" method="post">
       <label for="name">Pokemon name:</label>
       <input name="name" id="name" type="text" />
+      <label for="type_id">Select type:</label>
+      <select name="type_id" id="type_id">
+        <% types.forEach((row) => { %>
+        <option value="<%= row.id %>"><%= row.type %></option>
+        <% }); %>
+      </select>
+      <label for="trainer_id">Select trainer:</label>
+      <select name="trainer_id" id="trainer_id">
+        <% trainers.forEach((row) => { %>
+        <option value="<%= row.id %>"><%= row.name %></option>
+        <% }); %>
+      </select>
       <button type="submit">Add pokemon</button>
     </form>
     <a href="/pokemons">Back to previous page</a>

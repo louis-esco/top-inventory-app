@@ -10,6 +10,27 @@
     <form action="/pokemons/edit/<%= pokemon.id %>" method="post">
       <label for="name">Pokemon name:</label>
       <input name="name" id="name" type="text" value="<%= pokemon.name %>" />
+      <label for="type_id">Select type:</label>
+      <select name="type_id" id="type_id">
+        <% types.forEach((row) => { %> <% if(pokemon.type_id === row.id) { %>
+        <option value="<%= row.id %>" selected="selected">
+          <%= row.type %>
+        </option>
+        <% } else { %>
+        <option value="<%= row.id %>"><%= row.type %></option>
+        <% } %> <% }); %>
+      </select>
+      <label for="trainer_id">Select trainer:</label>
+      <select name="trainer_id" id="trainer_id">
+        <% trainers.forEach((row) => { %> <% if(pokemon.trainer_id === row.id) {
+        %>
+        <option value="<%= row.id %>" selected="selected">
+          <%= row.name %>
+        </option>
+        <% } else { %>
+        <option value="<%= row.id %>"><%= row.name %></option>
+        <% } %> <% }); %>
+      </select>
       <button type="submit">Save changes</button>
     </form>
     <a href="/pokemons">Back to previous page</a>
