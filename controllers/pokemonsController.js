@@ -2,7 +2,6 @@ const db = require("../db/queries");
 
 const displayPokemonsData = async (req, res) => {
   const pokemons = await db.getPokemonsData();
-  console.log(pokemons);
   res.render("./pokemons/pokemons-list", { pokemons: pokemons });
 };
 
@@ -37,7 +36,12 @@ const editPokemonGet = async (req, res) => {
 };
 
 const editPokemonPost = async (req, res) => {
-  await db.updatePokemon(req.params.id, req.body.name);
+  await db.updatePokemon(
+    req.params.id,
+    req.body.name,
+    req.body.type_id,
+    req.body.trainer_id
+  );
   res.redirect("/pokemons");
 };
 

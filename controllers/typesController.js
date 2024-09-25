@@ -2,6 +2,12 @@ const db = require("../db/queries");
 
 const displayTypesData = async (req, res) => {
   const types = await db.getTypesData();
+  for (const type of types) {
+    const pokemons = (await db.getPokemonsByTypeId(type.id)).map(
+      (poke) => poke.name
+    );
+    type.pokemons = pokemons;
+  }
   res.render("./types/types-list", { types: types });
 };
 

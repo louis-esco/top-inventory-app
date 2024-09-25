@@ -2,6 +2,12 @@ const db = require("../db/queries");
 
 const displayTrainersData = async (req, res) => {
   const trainers = await db.getTrainersData();
+  for (const trainer of trainers) {
+    const pokemons = (await db.getPokemonsByTrainerId(trainer.id)).map(
+      (poke) => poke.name
+    );
+    trainer.pokemons = pokemons;
+  }
   res.render("./trainers/trainers-list", { trainers: trainers });
 };
 

@@ -29,72 +29,103 @@ async function getTypesData() {
 }
 
 async function addTrainer(name, game) {
-  await pool.query(`INSERT INTO trainers (name, game)
+  await pool.query(
+    `INSERT INTO trainers (name, game)
     VALUES
-    ('${name}','${game}')
-    ;`);
+    ($1, $2)`,
+    [name, game]
+  );
 }
 
 async function addType(type) {
-  await pool.query(`INSERT INTO types (type)
+  await pool.query(
+    `INSERT INTO types (type)
     VALUES
-    ('${type}')
-    ;`);
+    ($1)`,
+    [type]
+  );
 }
 
 async function addPokemon(name, type_id, trainer_id) {
-  await pool.query(`INSERT INTO pokemons (name, type_id, trainer_id)
+  await pool.query(
+    `INSERT INTO pokemons (name, type_id, trainer_id)
     VALUES
-    ('${name}', '${type_id}', '${trainer_id}')
-    ;`);
+    ($1, $2, $3)`,
+    [name, type_id, trainer_id]
+  );
 }
 
 async function deleteTrainer(id) {
-  await pool.query(`DELETE FROM trainers WHERE id=${id};`);
+  await pool.query(`DELETE FROM trainers WHERE id=$1`, [id]);
 }
 
 async function deleteType(id) {
-  await pool.query(`DELETE FROM types WHERE id=${id};`);
+  await pool.query(`DELETE FROM types WHERE id=$1`, [id]);
 }
 
 async function deletePokemon(id) {
-  await pool.query(`DELETE FROM pokemons WHERE id=${id};`);
+  await pool.query(`DELETE FROM pokemons WHERE id=$1`, [id]);
 }
 
 async function getTrainerById(id) {
-  const { rows } = await pool.query(`SELECT * FROM trainers WHERE id=${id};`);
+  const { rows } = await pool.query(`SELECT * FROM trainers WHERE id=$1`, [id]);
   return rows;
 }
 
 async function getTypeById(id) {
-  const { rows } = await pool.query(`SELECT * FROM types WHERE id=${id};`);
+  const { rows } = await pool.query(`SELECT * FROM types WHERE id=$1`, [id]);
   return rows;
 }
 
 async function getPokemonById(id) {
-  const { rows } = await pool.query(`SELECT * FROM pokemons WHERE id=${id};`);
+  const { rows } = await pool.query(`SELECT * FROM pokemons WHERE id=$1`, [id]);
+  return rows;
+}
+
+async function getPokemonsByTypeId(type_id) {
+  const { rows } = await pool.query(
+    `SELECT name FROM pokemons WHERE type_id = $1`,
+    [type_id]
+  );
+  return rows;
+}
+
+async function getPokemonsByTrainerId(trainer_id) {
+  const { rows } = await pool.query(
+    `SELECT name FROM pokemons WHERE trainer_id = $1`,
+    [trainer_id]
+  );
   return rows;
 }
 
 async function updateTrainer(id, name, game) {
-  await pool.query(`UPDATE trainers
-    SET name = '${name}', game = '${game}'
-    WHERE id = ${id}
-    `);
+  await pool.query(
+    `UPDATE trainers
+    SET name = $1, game = $2
+    WHERE id = $3
+    `,
+    [name, game, id]
+  );
 }
 
 async function updateType(id, type) {
-  await pool.query(`UPDATE types
-    SET type = '${type}'
-    WHERE id = ${id}
-    `);
+  await pool.query(
+    `UPDATE types
+    SET type = $1
+    WHERE id = $2
+    `,
+    [type, id]
+  );
 }
 
-async function updatePokemon(id, name) {
-  await pool.query(`UPDATE pokemons
-    SET name = '${name}'
-    WHERE id = ${id}
-    `);
+async function updatePokemon(id, name, type_id, trainer_id) {
+  await pool.query(
+    `UPDATE pokemons
+    SET name = $1, type_id = $2, trainer_id = $3
+    WHERE id = $4
+    `,
+    [name, type_id, trainer_id, id]
+  );
 }
 
 module.exports = {
@@ -114,4 +145,6 @@ module.exports = {
   deletePokemon,
   getPokemonById,
   updatePokemon,
+  getPokemonsByTypeId,
+  getPokemonsByTrainerId,
 };
