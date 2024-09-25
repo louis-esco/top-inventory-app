@@ -115,7 +115,8 @@ async function updatePokemon(id, name, type_id, trainer_id) {
 async function getPokemonsByType() {
   const { rows } = await pool.query(
     `SELECT types.id, types.type, pokemons.name AS pokemons FROM types
-    LEFT JOIN pokemons on types.id = pokemons.type_id`
+    LEFT JOIN pokemons on types.id = pokemons.type_id
+    ORDER BY types.id`
   );
   return rows;
 }
@@ -123,7 +124,8 @@ async function getPokemonsByType() {
 async function getPokemonsByTrainer() {
   const { rows } = await pool.query(
     `SELECT trainers.id, trainers.name, trainers.game, pokemons.name AS pokemons FROM trainers
-    LEFT JOIN pokemons on trainers.id = pokemons.trainer_id`
+    LEFT JOIN pokemons on trainers.id = pokemons.trainer_id
+    ORDER BY id`
   );
   return rows;
 }
