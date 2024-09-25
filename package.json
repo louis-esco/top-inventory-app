@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "populate": "node ./db/populateDb",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
