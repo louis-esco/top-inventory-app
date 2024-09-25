@@ -82,22 +82,6 @@ async function getPokemonById(id) {
   return rows;
 }
 
-async function getPokemonsByTypeId(type_id) {
-  const { rows } = await pool.query(
-    `SELECT name FROM pokemons WHERE type_id = $1`,
-    [type_id]
-  );
-  return rows;
-}
-
-async function getPokemonsByTrainerId(trainer_id) {
-  const { rows } = await pool.query(
-    `SELECT name FROM pokemons WHERE trainer_id = $1`,
-    [trainer_id]
-  );
-  return rows;
-}
-
 async function updateTrainer(id, name, game) {
   await pool.query(
     `UPDATE trainers
@@ -161,8 +145,6 @@ module.exports = {
   deletePokemon,
   getPokemonById,
   updatePokemon,
-  getPokemonsByTypeId,
-  getPokemonsByTrainerId,
   getPokemonsByType,
   getPokemonsByTrainer,
 };
