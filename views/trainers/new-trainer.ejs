@@ -7,6 +7,7 @@
   </head>
   <body>
     <h1>Add new trainer:</h1>
+    <%- include("../partials/errors.ejs") %>
     <form action="/trainers/new" method="post">
       <label for="name">Trainer name:</label>
       <input name="name" id="name" type="text" />

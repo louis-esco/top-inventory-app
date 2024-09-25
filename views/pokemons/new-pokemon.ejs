@@ -7,6 +7,7 @@
   </head>
   <body>
     <h1>Add new pokemon:</h1>
+    <%- include("../partials/errors.ejs") %>
     <form action="/pokemons/new" method="post">
       <label for="name">Pokemon name:</label>
       <input name="name" id="name" type="text" />

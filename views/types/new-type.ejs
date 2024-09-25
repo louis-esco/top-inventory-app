@@ -7,6 +7,7 @@
   </head>
   <body>
     <h1>Add new type:</h1>
+    <%- include("../partials/errors.ejs") %>
     <form action="/types/new" method="post">
       <label for="type">Type name:</label>
       <input name="type" id="type" type="text" />
