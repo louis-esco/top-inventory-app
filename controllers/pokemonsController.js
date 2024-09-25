@@ -35,7 +35,9 @@ const newPokemonPost = [
         types: types,
       });
     }
-    await db.addPokemon(req.body.name, req.body.type_id, req.body.trainer_id);
+    const type_id = req.body.type_id ? req.body.type_id : null;
+    const trainer_id = req.body.trainer_id ? req.body.trainer_id : null;
+    await db.addPokemon(req.body.name, type_id, trainer_id);
     res.redirect("/pokemons");
   },
 ];
@@ -71,12 +73,10 @@ const editPokemonPost = [
         pokemon: pokemonData[0],
       });
     }
-    await db.updatePokemon(
-      req.params.id,
-      req.body.name,
-      req.body.type_id,
-      req.body.trainer_id
-    );
+    const type_id = req.body.type_id ? req.body.type_id : null;
+    const trainer_id = req.body.trainer_id ? req.body.trainer_id : null;
+
+    await db.updatePokemon(req.params.id, req.body.name, type_id, trainer_id);
     res.redirect("/pokemons");
   },
 ];

@@ -13,6 +13,7 @@
       <input name="name" id="name" type="text" value="<%= pokemon.name %>" />
       <label for="type_id">Select type:</label>
       <select name="type_id" id="type_id">
+        <option value="">-</option>
         <% types.forEach((row) => { %> <% if(pokemon.type_id === row.id) { %>
         <option value="<%= row.id %>" selected="selected">
           <%= row.type %>
@@ -23,6 +24,7 @@
       </select>
       <label for="trainer_id">Select trainer:</label>
       <select name="trainer_id" id="trainer_id">
+        <option value="">-</option>
         <% trainers.forEach((row) => { %> <% if(pokemon.trainer_id === row.id) {
         %>
         <option value="<%= row.id %>" selected="selected">
