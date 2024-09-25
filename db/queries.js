@@ -128,6 +128,22 @@ async function updatePokemon(id, name, type_id, trainer_id) {
   );
 }
 
+async function getPokemonsByType() {
+  const { rows } = await pool.query(
+    `SELECT types.id, types.type, pokemons.name AS pokemons FROM types
+    LEFT JOIN pokemons on types.id = pokemons.type_id`
+  );
+  return rows;
+}
+
+async function getPokemonsByTrainer() {
+  const { rows } = await pool.query(
+    `SELECT trainers.id, trainers.name, trainers.game, pokemons.name AS pokemons FROM trainers
+    LEFT JOIN pokemons on trainers.id = pokemons.trainer_id`
+  );
+  return rows;
+}
+
 module.exports = {
   getDbList,
   getPokemonsData,
@@ -147,4 +163,6 @@ module.exports = {
   updatePokemon,
   getPokemonsByTypeId,
   getPokemonsByTrainerId,
+  getPokemonsByType,
+  getPokemonsByTrainer,
 };

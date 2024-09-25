@@ -1,12 +1,12 @@
 const db = require("../db/queries");
 
 const displayTypesData = async (req, res) => {
-  const types = await db.getTypesData();
-  for (const type of types) {
-    const pokemons = (await db.getPokemonsByTypeId(type.id)).map(
-      (poke) => poke.name
-    );
-    type.pokemons = pokemons;
+  const query = await db.getPokemonsByType();
+  const types = [];
+  for (let row of query) {
+    const found = types.findIndex((el) => el.id === row.id);
+    if (found > -1) types[found].pokemons.push(row.pokemons);
+    else types.push({ ...row, pokemons: [row.pokemons] });
   }
   res.render("./types/types-list", { types: types });
 };

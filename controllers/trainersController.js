@@ -1,12 +1,12 @@
 const db = require("../db/queries");
 
 const displayTrainersData = async (req, res) => {
-  const trainers = await db.getTrainersData();
-  for (const trainer of trainers) {
-    const pokemons = (await db.getPokemonsByTrainerId(trainer.id)).map(
-      (poke) => poke.name
-    );
-    trainer.pokemons = pokemons;
+  const query = await db.getPokemonsByTrainer();
+  const trainers = [];
+  for (let row of query) {
+    const found = trainers.findIndex((el) => el.id === row.id);
+    if (found > -1) trainers[found].pokemons.push(row.pokemons);
+    else trainers.push({ ...row, pokemons: [row.pokemons] });
   }
   res.render("./trainers/trainers-list", { trainers: trainers });
 };
