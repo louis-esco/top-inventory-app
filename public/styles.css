@@ -1,0 +1,155 @@
+@font-face {
+  font-family: "PokemonFont";
+  src: url(./assets/PokemonFont.ttf) format("truetype");
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background-color: #e9aa75;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  transition: opacity 200ms;
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.mainTitle {
+  font-family: PokemonFont, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: #f8ce46;
+  -webkit-text-stroke: 0.2rem #406ab6;
+  font-size: 3.5rem;
+  text-align: center;
+  letter-spacing: 0.3rem;
+}
+
+.dbList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.dbBtn {
+  padding: 15px 30px;
+  background-color: #406ab6;
+  border-radius: 20px;
+  font-family: PokemonFont, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.1rem;
+}
+
+.contentImg img {
+  height: 100px;
+}
+
+ul.dataList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  padding: 0 30px;
+  margin: 30px 0;
+}
+
+li.dataContent {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.dataActions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.deleteBtn,
+.editBtn {
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.deleteBtn {
+  background-color: #de4d3e;
+}
+
+.editBtn {
+  background-color: #406ab6;
+}
+
+.pageActions {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 20px;
+  background-color: #406ab6;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.pageActions button {
+  padding: 5px 10px;
+  background-color: #ffffff;
+  color: #406ab6;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+input,
+select {
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 6px;
+  width: 275px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.submitBtn {
+  padding: 5px 10px;
+  background-color: #406ab6;
+  border-radius: 5px;
+}
+
+.newForm,
+.editForm {
+  display: flex;
+  flex-direction: column;
+  padding: 0 50px;
+  gap: 10px;
+  align-items: center;
+}

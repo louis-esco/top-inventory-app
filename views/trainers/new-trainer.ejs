@@ -4,17 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inventory App</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="icon" type="image/svg+xml" href="/assets/pika.svg" />
   </head>
   <body>
-    <h1>Add new trainer:</h1>
+    <h1 class="mainTitle">Add new trainer:</h1>
     <%- include("../partials/errors.ejs") %>
-    <form action="/trainers/new" method="post">
+    <form class="newForm" action="/trainers/new" method="post">
       <label for="name">Trainer name:</label>
       <input name="name" id="name" type="text" />
       <label for="game">Trainer game:</label>
       <input type="text" name="game" id="game" />
-      <button type="submit">Add trainer</button>
+      <button class="submitBtn" type="submit">Add trainer</button>
     </form>
-    <a href="/trainers">Back to previous page</a>
+    <div class="pageActions">
+      <a href="/trainers"><button>&#8592; Back to previous page</button></a>
+    </div>
   </body>
 </html>

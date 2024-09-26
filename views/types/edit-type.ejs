@@ -4,15 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inventory App</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="icon" type="image/svg+xml" href="/assets/pika.svg" />
   </head>
   <body>
-    <h1>Edit type:</h1>
+    <h1 class="mainTitle">Edit type:</h1>
     <%- include("../partials/errors.ejs") %>
-    <form action="/types/edit/<%= type.id %>" method="post">
+    <form class="editForm" action="/types/edit/<%= type.id %>" method="post">
       <label for="type">Type name:</label>
       <input name="type" id="type" type="text" value="<%= type.type %>" />
-      <button type="submit">Save changes</button>
+      <button class="submitBtn" type="submit">Save changes</button>
     </form>
-    <a href="/types">Back to previous page</a>
+    <div class="pageActions">
+      <a href="/types"><button>&#8592; Back to previous page</button></a>
+    </div>
   </body>
 </html>

@@ -4,11 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inventory App</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="icon" type="image/svg+xml" href="/assets/pika.svg" />
   </head>
   <body>
-    <h1>Add new pokemon:</h1>
+    <h1 class="mainTitle">Add new pokemon:</h1>
     <%- include("../partials/errors.ejs") %>
-    <form action="/pokemons/new" method="post">
+    <form class="newForm" action="/pokemons/new" method="post">
       <label for="name">Pokemon name:</label>
       <input name="name" id="name" type="text" />
       <label for="type_id">Select type:</label>
@@ -25,8 +27,10 @@
         <option value="<%= row.id %>"><%= row.name %></option>
         <% }); %>
       </select>
-      <button type="submit">Add pokemon</button>
+      <button class="submitBtn" type="submit">Add pokemon</button>
     </form>
-    <a href="/pokemons">Back to previous page</a>
+    <div class="pageActions">
+      <a href="/pokemons"><button>&#8592; Back to previous page</button></a>
+    </div>
   </body>
 </html>
