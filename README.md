@@ -1,4 +1,4 @@
-# top-inventory-app
+# The Odin Project - Inventory App
 
 ## Live preview
 Deployed at: https://top-inventory-app-hg4w.onrender.com/
